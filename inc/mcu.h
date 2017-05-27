@@ -10,6 +10,7 @@ SBIT(LED_R, SFR_P0, 0);
 SBIT(LED_G, SFR_P0, 1);                
 
 void sysclk_init(void);
+void port_init(void);
 
 void timer_init(uint32_t tick);
 void timer_start(void);

@@ -381,6 +381,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\heartbeat_task.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\uart_task.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

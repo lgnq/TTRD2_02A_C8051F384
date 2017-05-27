@@ -45,6 +45,7 @@
 
 // Tasks
 #include "heartbeat_task.h"
+#include "uart_task.h"
 //#include "../tasks/ttrd2-02a-t0091a-v001c_iwdt_task.h"
 //#include "../tasks/ttrd2-02a-t0091a-v001c_switch_task.h"
 
@@ -233,6 +234,12 @@ void PROCESSOR_Configure_Required_Mode(void)
 
             // Prepare for heartbeat task
             HEARTBEAT_SW_Init();
+            
+            // Prepare for UART1 task (set baud rate)
+            UART2_BUF_O_Init(115200);
+          
+            // Report mode (via buffer)          
+            UART2_BUF_O_Write_String_To_Buffer("\nNormal mode\n");              
 
             // Add tasks to schedule.
             // Parameters are:
@@ -243,6 +250,7 @@ void PROCESSOR_Configure_Required_Mode(void)
 //            SCH_Add_Task(WATCHDOG_Update,       0, 1);    // Feed watchdog
 //            SCH_Add_Task(SWITCH_BUTTON1_Update, 0, 10);   // Switch interface 
             SCH_Add_Task(HEARTBEAT_SW_Update,   0, 1000); // Heartbeat LED
+            SCH_Add_Task(UART2_BUF_O_Update,    0, 1);    // UART reports
 
             // Feed the watchdog
 //            WATCHDOG_Update();
